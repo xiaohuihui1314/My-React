@@ -1,9 +1,8 @@
-export default loadComponent=> (
+export default loadComponent => (
     class AsyncComponent extends React.Component {
         state = {
             Mod: null,
-        }
-
+        };
         componentWillMount() {
             if (this.hasLoadedComponent()) {
                 return;
@@ -11,7 +10,7 @@ export default loadComponent=> (
             loadComponent()
                 .then(module => module.default)
                 .then((Mod) => {
-                    this.setState({ Mod });
+                    this.setState({Mod});
                 })
                 .catch((err) => {
                     console.error(`Cannot load component in <AsyncComponent />`);
@@ -24,7 +23,7 @@ export default loadComponent=> (
         }
 
         render() {
-            const { Mod } = this.state;
+            const {Mod} = this.state;
             return (Mod) ? <Mod {...this.props} /> : null;
         }
     }

@@ -6,6 +6,13 @@ const webpack = require("webpack"),
     version = require("./version"),
     // 将要处理的目录包括进来
     APP_PATH = path.resolve(__dirname, '../src');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin'); //自动打开浏览器插件
+const assetsPath = function (_path) {
+    const assetsSubDirectory = process.env.NODE_ENV === 'production'
+        ? "static"
+        : "static"
+    return path.posix.join(assetsSubDirectory, _path)
+};
 module.exports = {
     /*
      context 应该配置为绝对路径，假如入口起点为src/main.js，则可以配置：
@@ -20,9 +27,9 @@ module.exports = {
         // 一定要加上，否则代码修改页面不刷新
         'webpack-hot-middleware/client?reload=true',
         // 主程序入口
-         './main.js'
+        './main.js'
     ],
-    watch:true,
+    watch: true,
     // 配置打包输出相关
     output: {
         // 打包输出目录
@@ -54,18 +61,34 @@ module.exports = {
                  使用数组可以让文件传入多个loader，loader的处理顺序是从最后一个开始
                  babel-loader用来编译js文件.
                  */
-                use: ['babel-loader']
+                use: ['babel-loader'],
+            },
+            {
+                test: /\.(css|scss)$/,
+                // scss需要下载sass-loader、node-sass
+                loader: "style-loader!css-loader!sass-loader"
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: assetsPath('img/[name].[hash:7].[ext]')
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: assetsPath('fonts/[name].[hash:7].[ext]')
+                }
             }
         ]
     },
     resolve: {
         // 自动补全的扩展名
         extensions: ['.js', '.scss', '.json'],
-        // 默认路径代理
-        // 例如 import Vue from 'vue'，会自动到 'vue/dist/vue.common.js'中寻找
-        // alias: {
-        //     '@': 'bundle-loader?lazy&name=aa!'
-        // }
     },
     /*
      配置webpack插件
@@ -93,8 +116,8 @@ module.exports = {
         //自动注入库定义
         new webpack.ProvidePlugin({
             'React': 'react',
-            'ReactDOM': 'react-dom'
+            'ReactDOM': 'react-dom',
         }),
-
+        // new OpenBrowserPlugin({url: 'http://localhost:8088'})
     ]
 };
