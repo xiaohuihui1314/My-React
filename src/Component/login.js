@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.loginFetch.id) {
             this.setState({loading: false})
+            this.props.history.push('/')
         }else {
             console.log(nextProps.loginFetch)
         }
