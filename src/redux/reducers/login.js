@@ -1,4 +1,3 @@
-import {combineReducers} from 'redux';
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, VERIFY_TOKEN} from '../actions/login';
 
 export function loginFetch(state = {}, action) {

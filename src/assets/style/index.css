@@ -13,7 +13,11 @@ body {
 }
 
 .index-nav-wrap, .ant-menu {
-    background-color: #f0f0f0 !important;
+    background-color: #2e8ad6 !important
+}
+
+.navbar-ul a {
+    color: #fff;
 }
 
 .index-nav {
@@ -23,24 +27,26 @@ body {
     line-height: 50px;
     margin: 0 auto;
 }
+
 .navbar-header {
     font-size: 20px;
     font-weight: 600;
+    color: #fff;
 }
 
 .navbar-ul {
     position: absolute;
     right: 0;
-    top:0;
+    top: 0;
     height: 50px;
     line-height: 50px;
 }
-.navbar-ul li{
+
+.navbar-ul li {
     float: left;
     position: relative;
     padding: 0 10px;
 }
-
 
 .ant-menu-horizontal {
     border: none !important;
@@ -107,11 +113,13 @@ body {
 
 .login-form {
     max-width: 300px;
-    margin: 150px  auto 0;
+    margin: 150px auto 0;
 }
+
 .login-form-forgot {
     float: right;
 }
+
 .login-form-button {
     width: 100%;
 }

@@ -1,4 +1,3 @@
-import {combineReducers} from 'redux';
 import {REGINSTER_START, REGINSTER_SUCCESS, REGINSTER_ERROR} from '../actions/register';
 
 export function registerFetch(state = {}, action) {

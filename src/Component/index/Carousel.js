@@ -1,21 +1,33 @@
 import {Carousel} from 'antd';
-
-export default class CarouselList extends React.Component {
-    constructor(props) {
+import {connect} from  'react-redux';
+import {getADList}  from '../../redux/actions/home';
+class CarouselList extends React.Component {
+    constructor (props) {
         super(props);
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
     }
-
-    next() {
+    next () {
         this.slider.refs.slick.slickNext()
     }
-
-    previous() {
+    previous () {
         this.slider.refs.slick.slickPrev()
     }
-
-    render() {
+    componentDidMount () {
+        this.props.dispatch(getADList('5a44f95efed2770afc573e29'));
+    }
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.loginFetch && nextProps.loginFetch.id) {
+            this.setState({ loading: false })
+            this.props.history.push('/')
+        } else {
+            console.log(nextProps.loginFetch)
+        }
+    }
+    // componentWillReceiveProps(nextProps,old) {
+    //     console.log(nextProps,old)
+    // }
+    render () {
         const settings = {
             autoplay: true,//是否自动播放
             adaptiveHeight: true,//高度自适应
@@ -33,24 +45,23 @@ export default class CarouselList extends React.Component {
              }*/
         };
         let imgArray = [
-            "https://t1.mmonly.cc/uploads/tu/sm/20151226/50.jpg",
-            "https://t1.mmonly.cc/uploads/tu/sm/20151226/46.jpg",
-            "https://t1.mmonly.cc/uploads/tu/sm/20151226/49.jpg",
-            "https://t1.mmonly.cc/uploads/tu/201610/61/d043ad4bd11373f08987bb08a60f4bfbfaed04e8.jpg",
-            "https://t1.mmonly.cc/uploads/tu/201610/61/sj1116dm03.jpg",
-            "https://t1.mmonly.cc/uploads/tu/201610/61/241f95cad1c8a786fce1fd4a6409c93d71cf50ae.jpg"
+            "http://t1.mmonly.cc/uploads/tu/sm/20151226/50.jpg",
+            "http://t1.mmonly.cc/uploads/tu/sm/20151226/46.jpg",
+            "http://t1.mmonly.cc/uploads/tu/sm/20151226/49.jpg",
+            "http://t1.mmonly.cc/uploads/tu/201610/61/d043ad4bd11373f08987bb08a60f4bfbfaed04e8.jpg",
+            "http://t1.mmonly.cc/uploads/tu/201610/61/sj1116dm03.jpg",
+            "http://t1.mmonly.cc/uploads/tu/201610/61/241f95cad1c8a786fce1fd4a6409c93d71cf50ae.jpg"
         ];
-
         return (
             <div>
                 <Carousel ref={c => this.slider = c } {...settings} >
-                    {imgArray.map(function (value, index) {
+                    {imgArray.map(function(value, index) {
                         return (
-                            <div key={index} style={{"backgroundImage": "url(" + value + ")"}}></div>
+                            <div key={index} style={{ "backgroundImage": "url(" + value + ")" }}></div>
                         )
                     })}
                 </Carousel>
-                <div style={{textAlign: 'center'}}>
+                <div style={{ textAlign: 'center' }}>
                     <button className='button' onClick={this.previous}>Previous</button>
                     <button className='button' onClick={this.next}>Next</button>
                 </div>
@@ -58,3 +69,11 @@ export default class CarouselList extends React.Component {
         );
     }
 }
+function mapStateToProps (state) {
+    // 获取reducer的集合
+    const { adFetch } = state;
+    return {
+        adFetch
+    }
+}
+export default connect(mapStateToProps)(CarouselList);
