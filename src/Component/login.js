@@ -12,14 +12,14 @@ class LoginForm extends React.Component {
             loading: false
         }
     }
-    componentWillReceiveProps (nextProps) {
-        if (nextProps.loginFetch && nextProps.loginFetch.id) {
-            this.setState({ loading: false })
-            this.props.history.push('/')
-        } else {
-            console.log(nextProps.loginFetch)
-        }
-    }
+    // componentWillReceiveProps (nextProps) {
+    //     if (nextProps.loginFetch && nextProps.loginFetch.id) {
+    //         this.setState({ loading: false })
+    //         this.props.history.push('/')
+    //     } else {
+    //         console.log(nextProps.loginFetch)
+    //     }
+    // }
     verifyToken () {
         console.log(44)
         this.props.dispatch(verifyToken({ a: 1 }));
@@ -35,6 +35,7 @@ class LoginForm extends React.Component {
     }
     render () {
         const { getFieldDecorator } = this.props.form;
+        console.log(this.props);
         return (
             <div>
                 

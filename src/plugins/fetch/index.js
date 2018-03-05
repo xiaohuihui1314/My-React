@@ -21,7 +21,6 @@ export default  async (type = 'GET', url = '', data = {}) => {
                 "Authorization": localStorage.getItem("userToken")
             },
             mode: 'cors',
-            cache: 'force-cache'
         };
         if (type === 'POST') {
             Object.defineProperty(requestConfig, 'body', {

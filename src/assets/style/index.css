@@ -123,3 +123,47 @@ body {
 .login-form-button {
     width: 100%;
 }
+
+.ant-carousel .slick-prev {
+    left: 5% !important;
+    color: #000 !important;
+}
+
+.ant-carousel .slick-next {
+    right: 5% !important;
+    color: #000 !important;
+}
+.nextArrow{
+    position: absolute;
+    right: 25px;
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    background: #000;
+    top: 50%;
+    margin-top: -10px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    z-index: 999;
+}
+.prevArrow{
+    position: absolute;
+    left: 25px;
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    background: #000;
+    top: 50%;
+    margin-top: -10px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    z-index: 999;
+}
