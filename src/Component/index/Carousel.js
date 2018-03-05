@@ -1,6 +1,6 @@
 import {Carousel} from 'antd';
 import {connect} from  'react-redux';
-import {getADList}  from '../../redux/actions/home';
+import {get_Ad_List}  from '../../redux/actions/home';
 class CarouselList extends React.Component {
     constructor (props) {
         super(props);
@@ -14,7 +14,7 @@ class CarouselList extends React.Component {
         this.slider.refs.slick.slickPrev()
     }
     componentDidMount () {
-        this.props.dispatch(getADList('5a44f95efed2770afc573e29'));
+        this.props.dispatch(get_Ad_List('5a44f95efed2770afc573e29'));
     }
     componentWillReceiveProps (nextProps) {
         if (nextProps.loginFetch && nextProps.loginFetch.id) {
@@ -69,11 +69,7 @@ class CarouselList extends React.Component {
         );
     }
 }
-function mapStateToProps (state) {
-    // 获取reducer的集合
-    const { adFetch } = state;
-    return {
-        adFetch
-    }
-}
+const mapStateToProps = (state) => ({
+    ad: state.ad,
+});
 export default connect(mapStateToProps)(CarouselList);
