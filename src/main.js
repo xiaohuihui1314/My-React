@@ -1,6 +1,7 @@
 import {Provider} from 'react-redux';
 import Index from './index';
-import './assets/style/index.css';
+import './assets/style/common';
+import './assets/style/index';
 import store from './redux/store';
 
 ReactDOM.render(

@@ -7,7 +7,7 @@ const webpack = require("webpack"),
     // 将要处理的目录包括进来
     APP_PATH = path.resolve(__dirname, '../src');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin'); //自动打开浏览器插件
-const assetsPath = function (_path) {
+const assetsPath = function(_path) {
     const assetsSubDirectory = process.env.NODE_ENV === 'production'
         ? "static"
         : "static"
@@ -88,7 +88,7 @@ module.exports = {
     },
     resolve: {
         // 自动补全的扩展名
-        extensions: ['.js', '.scss', '.json'],
+        extensions: ['.js', '.scss', '.json', '.css'],
     },
     /*
      配置webpack插件

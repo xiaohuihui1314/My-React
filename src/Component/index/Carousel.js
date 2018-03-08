@@ -37,6 +37,7 @@ class CarouselList extends React.Component {
             dots: true,
             infinite: true,
             arrows: true, //  箭头
+            height:600,
             slidesToShow: 1,//一屏显示多少列
             slidesToScroll: 1,//每次播放多少列
             nextArrow: <SampleNextArrow />, //  自定义箭头
